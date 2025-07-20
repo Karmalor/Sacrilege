@@ -3,8 +3,6 @@
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { redirect } from "next/navigation";
-import Checkout from "@/app/(frontend)/(authenticated)/form/purchaseApplication/_components/Checkout";
-import { createPaymentIntent } from "@/app/(frontend)/(authenticated)/form/purchaseApplication/_actions/actions";
 import Link from "next/link";
 
 const AddToCartButton = ({ product }) => {
