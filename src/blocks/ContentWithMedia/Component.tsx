@@ -1,10 +1,7 @@
 import { ContentWithMedia as ContentWithMediaBlockProps } from "@/payload-types";
-import Image from "next/image";
 import React from "react";
 
 import RichText from "@/components/RichText";
-import { Button } from "@/components/ui/button";
-import { CollectionArchive } from "@/components/CollectionArchive";
 import TicketSelectorButton from "./components/TicketSelectorButton";
 
 export const ContentWithMediaBlock: React.FC<

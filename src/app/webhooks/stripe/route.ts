@@ -58,7 +58,7 @@ export async function POST(request: Request) {
       session.object.id
     );
 
-    if (!lineItems) return;
+    // if (!lineItems) return;
 
     console.log(lineItems);
 
