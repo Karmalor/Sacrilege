@@ -2,10 +2,7 @@ import { NextResponse } from "next/server";
 import { getPayload } from "payload";
 import Stripe from "stripe";
 import configPromise from "@payload-config";
-import { getUser } from "@/app/(frontend)/(authenticated)/_actions/getUser";
-import { uuid } from "node_modules/zod/v4/core/regexes.cjs";
 import { randomUUID } from "crypto";
-import { TicketType } from "@/payload-types";
 
 const stripe = new Stripe((process.env.STRIPE_SECRET_KEY as string) || "", {
   apiVersion: "2022-08-01",
@@ -19,6 +16,8 @@ export const config = {
 
 export async function POST(request: Request) {
   const sig = request.headers.get("stripe-signature");
+
+  console.log("Hi");
 
   if (!sig) {
     console.log("No Signature");
@@ -74,7 +73,7 @@ export async function POST(request: Request) {
             data: {
               user: session.object.customer_email,
               uuid: randomUUID(),
-              ticketType: lineItem[i].id,
+              ticketType: "6879f0b31dd88561e7f6bdd4",
             },
           });
         } catch (error) {
