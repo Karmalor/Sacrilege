@@ -1024,7 +1024,7 @@ export interface PerformanceVideo {
 export interface Ticket {
   id: string;
   uuid: string;
-  user?: (string | null) | User;
+  user?: string | null;
   ticketType: string | TicketType;
   paymentIntent?: string | null;
   paid?: boolean | null;

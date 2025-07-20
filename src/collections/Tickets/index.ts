@@ -39,8 +39,8 @@ export const Tickets: CollectionConfig = {
     {
       name: "user",
       label: "Attendee",
-      type: "relationship",
-      relationTo: "users",
+      type: "email",
+      // relationTo: "users",
       required: false,
     },
     {
