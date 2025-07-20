@@ -5,11 +5,11 @@ import { getPayload } from "payload";
 import configPromise from "@payload-config";
 import { TicketType } from "@/payload-types";
 
-export async function CheckoutPage({
+const CheckoutPage = async ({
   searchParams,
 }: {
   searchParams: Promise<any>;
-}) {
+}) => {
   const payload = await getPayload({ config: configPromise });
 
   const { qty, ticketId } = await searchParams;
@@ -68,6 +68,6 @@ export async function CheckoutPage({
       </div>
     </div>
   );
-}
+};
 
 export default CheckoutPage;
