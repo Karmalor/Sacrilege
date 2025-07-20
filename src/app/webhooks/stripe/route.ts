@@ -64,7 +64,7 @@ export async function POST(request: Request) {
       // return;
     }
 
-    console.log(lineItems);
+    console.log("lineItems", lineItems);
 
     lineItems.data.map(async (lineItem) => {
       for (let i = 0; i < (lineItem.quantity || 1); i++) {
@@ -74,7 +74,7 @@ export async function POST(request: Request) {
             data: {
               user: session.object.customer_email,
               uuid: randomUUID(),
-              ticketType: lineItem.id,
+              ticketType: lineItem[i].id,
             },
           });
         } catch (error) {

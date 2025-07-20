@@ -21,7 +21,7 @@ export const postStripeSession = async ({
   productsArray,
   // appFee,
 }: NewSessionOptions) => {
-  const returnUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/checkout-return?session_id={CHECKOUT_SESSION_ID}`;
+  const returnUrl = `/checkout-return?session_id={CHECKOUT_SESSION_ID}`;
 
   const session = await stripe.checkout.sessions.create(
     {
