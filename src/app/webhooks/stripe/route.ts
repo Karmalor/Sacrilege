@@ -51,14 +51,18 @@ export async function POST(request: Request) {
     const session = event.data as Stripe.CheckoutSessionCompletedEvent.Data;
 
     if (session.object.payment_status !== "paid") {
-      return;
+      console.log("Session not paid");
+      // return;
     }
 
     const lineItems = await stripe.checkout.sessions.listLineItems(
       session.object.id
     );
 
-    // if (!lineItems) return;
+    if (!lineItems) {
+      console.log("No line items");
+      // return;
+    }
 
     console.log(lineItems);
 
