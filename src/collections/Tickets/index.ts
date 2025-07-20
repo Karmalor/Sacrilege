@@ -31,12 +31,6 @@ export const Tickets: CollectionConfig = {
   },
   fields: [
     {
-      name: "uuid",
-      label: "UUID",
-      type: "text",
-      required: true,
-    },
-    {
       name: "user",
       label: "Attendee",
       type: "email",

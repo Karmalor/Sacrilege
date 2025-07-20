@@ -72,7 +72,6 @@ export async function POST(request: Request) {
             collection: "tickets",
             data: {
               user: session.object.customer_email,
-              uuid: randomUUID(),
               ticketType: "6879f0b31dd88561e7f6bdd4",
               paymentIntent: session.object.payment_intent?.toString(),
               paid: true,

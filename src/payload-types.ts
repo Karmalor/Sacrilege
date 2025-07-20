@@ -1023,7 +1023,6 @@ export interface PerformanceVideo {
  */
 export interface Ticket {
   id: string;
-  uuid: string;
   user?: string | null;
   ticketType: string | TicketType;
   paymentIntent?: string | null;
@@ -1642,7 +1641,6 @@ export interface UsersSelect<T extends boolean = true> {
  * via the `definition` "tickets_select".
  */
 export interface TicketsSelect<T extends boolean = true> {
-  uuid?: T;
   user?: T;
   ticketType?: T;
   paymentIntent?: T;
