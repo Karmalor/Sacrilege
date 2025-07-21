@@ -58,21 +58,19 @@ export async function POST(request: Request) {
       session.object.id
     );
 
+    const productData = await stripe.checkout.sessions.retrieve(
+      session.object.id,
+      {
+        expand: ["line_items"],
+      }
+    );
+
     if (!lineItems) {
       console.log("No line items");
       // return;
     }
 
-    console.log("lineItems", lineItems);
-
-    const productDataObject = stripe.checkout.sessions.retrieve(
-      session.object.id,
-      {
-        expand: ["line_items.price_data"],
-      }
-    );
-
-    console.log("productDataObject", productDataObject);
+    console.log("lineItems", productData);
 
     lineItems.data.map(async (lineItem) => {
       for (let i = 0; i < (lineItem.quantity || 1); i++) {
