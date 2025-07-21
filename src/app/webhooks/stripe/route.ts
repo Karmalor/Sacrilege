@@ -65,6 +65,14 @@ export async function POST(request: Request) {
 
     console.log("lineItems", lineItems);
 
+    const productDataObject = lineItems.data[0].price?.object;
+    const productDataMetadata = lineItems.data[0].price?.metadata;
+    const productDataProduct = lineItems.data[0].price?.product;
+
+    console.log("productDataObject", productDataObject);
+    console.log("productDataMetadata", productDataMetadata);
+    console.log("productDataProduct", productDataProduct);
+
     lineItems.data.map(async (lineItem) => {
       for (let i = 0; i < (lineItem.quantity || 1); i++) {
         try {
