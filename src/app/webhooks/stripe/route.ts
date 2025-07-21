@@ -71,7 +71,7 @@ export async function POST(request: Request) {
           await payload.create({
             collection: "tickets",
             data: {
-              user: "68786815cadd61175a3353ea",
+              user: "karmalor@aol.com",
               ticketType: "6879f0b31dd88561e7f6bdd4",
               paymentIntent: session.object.payment_intent?.toString(),
               paid: true,
