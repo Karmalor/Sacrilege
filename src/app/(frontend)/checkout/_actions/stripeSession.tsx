@@ -26,7 +26,7 @@ export const postStripeSession = async ({
   const session = await stripe.checkout.sessions.create(
     {
       ui_mode: "embedded",
-      line_items: productsArray,
+      // line_items: productsArray,
 
       automatic_tax: {
         enabled: false,

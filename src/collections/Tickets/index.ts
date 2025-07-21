@@ -4,7 +4,7 @@ export const Tickets: CollectionConfig = {
   slug: "tickets",
   access: {
     read: ({ req: { user } }) => {
-      // return { attendee: { equals: user?.id } }
+      // return { user: { equals: user?.id } }
       return Boolean(user);
     },
     create: ({ req: { user }, data }) => {
@@ -12,7 +12,7 @@ export const Tickets: CollectionConfig = {
         return true;
         // } else if (
         //   user?.collection === "users" &&
-        //   data?.attendee === user?.id
+        //   data?.user === user?.id
         // ) {
         //   return true;
       } else {
@@ -20,10 +20,10 @@ export const Tickets: CollectionConfig = {
       }
     },
     update: ({ req: { user } }) => {
-      return { attendee: { equals: user?.id } };
+      return { user: { equals: user?.id } };
     },
     delete: ({ req: { user } }) => {
-      return { attendee: { equals: user?.id } };
+      return { user: { equals: user?.id } };
     },
   },
   admin: {

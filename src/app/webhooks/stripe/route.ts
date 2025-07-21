@@ -72,7 +72,7 @@ export async function POST(request: Request) {
             collection: "tickets",
             data: {
               user: "karmalor@aol.com",
-              ticketType: "6879f0b31dd88561e7f6bdd4",
+              ticketType: lineItem.price?.metadata.ticketId as string,
               paymentIntent: session.object.payment_intent?.toString(),
               paid: true,
             },

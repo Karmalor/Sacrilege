@@ -4,6 +4,7 @@ import { CheckoutForm } from "./_components/CheckoutForm";
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
 import { TicketType } from "@/payload-types";
+import { metadata } from "../layout";
 
 const CheckoutPage = async ({
   searchParams,
@@ -46,10 +47,13 @@ const CheckoutPage = async ({
       price_data: {
         currency: "usd",
         unit_amount: ticket.price * 100,
+        metadata: "123",
         product_data: {
           name: ticket.title,
+          metadata: { ticketId: ticket.id },
         },
       },
+
       quantity: quantity,
       adjustable_quantity: {
         enabled: true,
