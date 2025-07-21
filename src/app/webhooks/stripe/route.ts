@@ -55,14 +55,8 @@ export async function POST(request: Request) {
     }
 
     const lineItems = await stripe.checkout.sessions.listLineItems(
-      session.object.id
-    );
-
-    const productData = await stripe.checkout.sessions.retrieve(
       session.object.id,
-      {
-        expand: ["line_items"],
-      }
+      { expand: ["data.price.product"] }
     );
 
     if (!lineItems) {
@@ -70,7 +64,7 @@ export async function POST(request: Request) {
       // return;
     }
 
-    console.log("lineItems", productData);
+    console.log("lineItems", lineItems);
 
     lineItems.data.map(async (lineItem) => {
       for (let i = 0; i < (lineItem.quantity || 1); i++) {
@@ -79,7 +73,7 @@ export async function POST(request: Request) {
             collection: "tickets",
             data: {
               user: "karmalor@aol.com",
-              ticketType: lineItem.price?.metadata.ticketId as string,
+              ticketType: lineItem.price?.product.metadata.ticketId as string,
               paymentIntent: session.object.payment_intent?.toString(),
               paid: true,
             },
