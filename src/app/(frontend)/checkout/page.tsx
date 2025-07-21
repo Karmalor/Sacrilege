@@ -47,7 +47,6 @@ const CheckoutPage = async ({
       price_data: {
         currency: "usd",
         unit_amount: ticket.price * 100,
-        metadata: "123",
         product_data: {
           name: ticket.title,
           metadata: { ticketId: ticket.id },
