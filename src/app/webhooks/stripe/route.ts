@@ -72,7 +72,7 @@ export async function POST(request: Request) {
       }
     );
 
-    console.log("productDataObject", productDataObject);
+    console.log("poo");
 
     lineItems.data.map(async (lineItem) => {
       for (let i = 0; i < (lineItem.quantity || 1); i++) {
