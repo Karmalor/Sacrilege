@@ -72,10 +72,13 @@ export async function POST(request: Request) {
           await payload.create({
             collection: "tickets",
             data: {
-              user: "karmalor@aol.com",
-              //@ts-ignore
+              user: session.object.customer_details?.email as string,
+              firstName: session.object.custom_fields[0].text?.value,
+              lastName: session.object.custom_fields[1].text?.value,
+              // @ts-ignore
               ticketType: lineItem.price?.product.metadata.ticketId as string,
               paymentIntent: session.object.payment_intent?.toString(),
+              checkoutSession: session.object.id,
               paid: true,
             },
           });

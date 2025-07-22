@@ -1023,9 +1023,12 @@ export interface PerformanceVideo {
  */
 export interface Ticket {
   id: string;
-  user?: string | null;
+  user: string;
+  firstName?: string | null;
+  lastName?: string | null;
   ticketType: string | TicketType;
   paymentIntent?: string | null;
+  checkoutSession?: string | null;
   paid?: boolean | null;
   updatedAt: string;
   createdAt: string;
@@ -1642,8 +1645,11 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface TicketsSelect<T extends boolean = true> {
   user?: T;
+  firstName?: T;
+  lastName?: T;
   ticketType?: T;
   paymentIntent?: T;
+  checkoutSession?: T;
   paid?: T;
   updatedAt?: T;
   createdAt?: T;
