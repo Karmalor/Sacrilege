@@ -6,27 +6,26 @@ body {
   width: 100dvw;
   overflow-x: hidden;
 
-  font-family: '' General Sans ', sans-serif;';
+  font-family: "" General Sans ", sans-serif;";
 }
 
 @layer base {
   @font-face {
-    font-family: 'kijs';
-    src: url('/fonts/BauhausKijsDisplay-SemiBold.otf') format('opentype');
+    font-family: "kijs";
+    src: url("/fonts/BauhausKijsDisplay-SemiBold.otf") format("opentype");
     font-weight: normal;
     font-style: normal;
-    letter-spacing: '-80px';
   }
 
   @font-face {
-    font-family: 'zentry';
-    src: url('/fonts/zentry-regular.woff2') format('woff2');
+    font-family: "zentry";
+    src: url("/fonts/zentry-regular.woff2") format("woff2");
   }
 
   h1 {
-    font-family: 'kijs';
+    font-family: "kijs";
     font-size: 1em;
-    letter-spacing: -5px;
+    /* letter-spacing: -5px; */
     text-transform: uppercase;
   }
 
@@ -75,7 +74,7 @@ body {
     --error: 10 100% 86%;
   }
 
-  [data-theme='dark'] {
+  [data-theme="dark"] {
     --background: 0 0% 0%;
     --foreground: 210 40% 98%;
 
@@ -121,7 +120,7 @@ body {
 
 @layer utilities {
   .kijs-font {
-    font-family: 'kijs';
+    font-family: "kijs";
   }
 }
 
@@ -129,7 +128,7 @@ html {
   opacity: 0;
 }
 
-html[data-theme='dark'],
-html[data-theme='light'] {
+html[data-theme="dark"],
+html[data-theme="light"] {
   opacity: initial;
 }
