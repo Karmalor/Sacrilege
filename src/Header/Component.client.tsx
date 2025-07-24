@@ -4,26 +4,17 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
-import type { Header } from "@/payload-types";
+import type { Header, User } from "@/payload-types";
 
 import { Logo } from "@/components/Logo/Logo";
 import { HeaderNav } from "./Nav";
 
 import gsap from "gsap";
 import { useWindowScroll } from "react-use";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { LucideUserCircle } from "lucide-react";
-import { handleLogout } from "@/utilities/logout";
-import { logout } from "@/app/(frontend)/(authenticated)/_actions/logout";
-import LogoutButton from "@/components/Frontend/LogoutButton";
 
 interface HeaderClientProps {
   data: Header;
-  user: any;
+  user: User;
 }
 
 export const HeaderClient: React.FC<HeaderClientProps> = ({ data, user }) => {
