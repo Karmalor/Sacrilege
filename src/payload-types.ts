@@ -909,6 +909,7 @@ export interface ContentWithMedia {
         value: string | TicketType;
       }[]
     | null;
+  anchorId?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'contentWithMedia';
@@ -1416,6 +1417,7 @@ export interface ContentWithMediaSelect<T extends boolean = true> {
   richText?: T;
   ctaButtonLabel?: T;
   selectedDocs?: T;
+  anchorId?: T;
   id?: T;
   blockName?: T;
 }

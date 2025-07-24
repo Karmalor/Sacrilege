@@ -2,10 +2,9 @@ import { NextResponse } from "next/server";
 import { getPayload } from "payload";
 import Stripe from "stripe";
 import configPromise from "@payload-config";
-import { randomUUID } from "crypto";
 
-const stripe = new Stripe((process.env.STRIPE_SECRET_KEY as string) || "", {
-  apiVersion: "2022-08-01",
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
+  stripeAccount: process.env.NEXT_PUBLIC_STRIPE_CLIENT_ID as string,
 });
 
 export const config = {

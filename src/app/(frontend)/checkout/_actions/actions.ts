@@ -6,7 +6,9 @@ import configPromise from "@payload-config";
 import Stripe from "stripe";
 // import { attend } from '../../../_actions/attend'
 
-const stripe = new Stripe((process.env.STRIPE_SECRET_KEY as string) || "", {});
+const stripe = new Stripe((process.env.STRIPE_SECRET_KEY as string) || "", {
+  stripeAccount: process.env.NEXT_PUBLIC_STRIPE_CLIENT_ID as string,
+});
 
 // export async function createPaymentIntent(ticketType: TicketType, user: Attendee) {
 //   const payload = await getPayload({ config: configPromise })

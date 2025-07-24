@@ -23,6 +23,8 @@ export const NOLidoHero: React.FC<Page["hero"]> = ({
     setHeaderTheme("dark");
   });
 
+  console.log("media", media);
+
   return (
     <div
       className="h-dvh w-dvw overflow-x-hidden flex items-center justify-center text-red"

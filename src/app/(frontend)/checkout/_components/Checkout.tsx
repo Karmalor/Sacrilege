@@ -11,7 +11,9 @@ interface CheckoutInterface {
   ticketId: string;
 }
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK || "");
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK as string, {
+  stripeAccount: process.env.NEXT_PUBLIC_STRIPE_CLIENT_ID as string,
+});
 
 export default function Checkout({
   clientSecret,

@@ -7,32 +7,20 @@ import {
 } from "@stripe/react-stripe-js";
 import { postStripeSession } from "../_actions/stripeSession";
 
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PK as string
-  // {
-  //   stripeAccount: process.env.NEXT_PUBLIC_STRIPE_CLIENT_ID as string,
-  // }
-);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK as string, {
+  stripeAccount: process.env.NEXT_PUBLIC_STRIPE_CLIENT_ID as string,
+});
 
 type CheckoutFormProps = {
-  // priceId: string;
-
+  appFee: number;
   productsArray: [];
-  // appFee: number;
 };
 
-export const CheckoutForm = ({
-  // priceId,
-
-  productsArray,
-  // appFee,
-}: CheckoutFormProps) => {
+export const CheckoutForm = ({ appFee, productsArray }: CheckoutFormProps) => {
   const fetchClientSecret = useCallback(async () => {
     const stripeResponse = await postStripeSession({
-      // priceId,
-
       productsArray,
-      // appFee,
+      appFee,
     });
 
     return stripeResponse.clientSecret;

@@ -15,9 +15,6 @@ const CheckoutPage = async ({
 
   const { qty, ticketId } = await searchParams;
 
-  console.log("ticketType", ticketId);
-  console.log("qty", qty);
-
   let ticket: TicketType | null = null;
 
   try {
@@ -61,12 +58,16 @@ const CheckoutPage = async ({
     },
   ];
 
+  const amount = ticket.price * quantity;
+
+  const appFee = Math.floor(amount * 0.05);
+
   return (
     <div>
       <div className="max-w-screen-lg mx-auto my-8 mt-24">
         <CheckoutForm
           productsArray={productArray.length > 0 ? (productArray as []) : []}
-          // appFee={50}
+          appFee={appFee}
         />
       </div>
     </div>

@@ -7,11 +7,11 @@ import TicketSelectorButton from "./components/TicketSelectorButton";
 export const ContentWithMediaBlock: React.FC<
   ContentWithMediaBlockProps
 > = async (props) => {
-  const { richText, selectedDocs, ctaButtonLabel } = props;
+  const { richText, selectedDocs, ctaButtonLabel, anchorId } = props;
 
   return (
     <>
-      <div className="container">
+      <div className="container" id={anchorId || undefined}>
         <div className="bg-card rounded border-border border p-4 flex flex-col gap-8 md:flex-row md:justify-between md:items-center">
           <div className="max-w-[48rem] flex items-center">
             {richText && (

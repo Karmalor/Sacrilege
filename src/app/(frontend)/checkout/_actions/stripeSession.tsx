@@ -6,20 +6,18 @@ const apiKey = process.env.STRIPE_SECRET_KEY as string;
 
 // const connectedAccount = process.env.NEXT_PUBLIC_STRIPE_CLIENT_ID as string;
 
-const stripe = new Stripe(apiKey, {});
+const stripe = new Stripe(apiKey, {
+  stripeAccount: process.env.NEXT_PUBLIC_STRIPE_CLIENT_ID as string,
+});
 
 interface NewSessionOptions {
-  // priceId: string;
-
+  appFee: number;
   productsArray: [];
-  // appFee: number;
 }
 
 export const postStripeSession = async ({
-  // priceId,
-
+  appFee,
   productsArray,
-  // appFee,
 }: NewSessionOptions) => {
   const returnUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/checkout-return?session_id={CHECKOUT_SESSION_ID}`;
 
@@ -33,12 +31,11 @@ export const postStripeSession = async ({
       },
       mode: "payment",
       payment_intent_data: {
-        // application_fee_amount: appFee,
+        application_fee_amount: appFee,
       },
       metadata: {
-        // appFee,
+        appFee,
         // user: user?.primaryEmailAddress?.emailAddress as string,
-        // user: "karmalor@gmail.com",
         // upgradeId: upgradeId || "",
       },
       return_url: returnUrl,

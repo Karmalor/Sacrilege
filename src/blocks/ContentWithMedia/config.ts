@@ -49,6 +49,11 @@ export const ContentWithMedia: Block = {
       label: "Selection",
       relationTo: ["ticketTypes"],
     },
+    {
+      name: "anchorId",
+      label: "Anchor Tag ID",
+      type: "text",
+    },
 
     // {
     //   name: "ticketOption1",
