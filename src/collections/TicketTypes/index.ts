@@ -1,11 +1,10 @@
+import { anyone } from "@/access/anyone";
 import type { CollectionConfig } from "payload";
 
 export const TicketTypes: CollectionConfig = {
   slug: "ticketTypes",
   access: {
-    read: ({ req: { user } }) => {
-      return Boolean(user);
-    },
+    read: anyone,
     create: ({ req: { user } }) => {
       return user?.collection === "users";
     },
