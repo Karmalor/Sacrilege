@@ -1,3 +1,4 @@
+import admin from "@/access/admin";
 import { anyone } from "@/access/anyone";
 import { CollectionConfig } from "payload";
 
@@ -24,9 +25,10 @@ export const Tickets: CollectionConfig = {
     update: ({ req: { user } }) => {
       return { user: { equals: user?.id } };
     },
-    delete: ({ req: { user } }) => {
-      return { user: { equals: user?.id } };
-    },
+    // delete: ({ req: { user } }) => {
+    //   return { user: { equals: user?.id } };
+    // },
+    delete: admin,
   },
   admin: {
     useAsTitle: "",
