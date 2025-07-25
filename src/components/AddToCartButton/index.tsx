@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import TransitionLink from "../TransitionLink";
+import { DialogClose } from "../ui/dialog";
 
-const AddToCartButton = ({ product }) => {
+const AddToCartButton = ({ product, onCheckout }) => {
   const [cart, setCart] = useState(0);
   const [openCheckout, setOpenCheckout] = useState(false);
 
@@ -45,7 +47,10 @@ const AddToCartButton = ({ product }) => {
   const quantity = cart;
   // cart.items.find((item) => item.product.id === product.id)?.quantity || 0;
 
-  console.log("quantity", quantity);
+  const handleCheckout = () => {
+    setOpenCheckout(true);
+    onCheckout();
+  };
 
   return (
     <div>
@@ -73,20 +78,20 @@ const AddToCartButton = ({ product }) => {
               <Button onClick={increaseItemQuantity}>+</Button>
             </div>
             <Button
-              onClick={() => setOpenCheckout(true)}
-              className="mx-auto w-full"
+              onClick={handleCheckout}
+              className="mx-auto w-full border-white"
             >
-              <Link
+              <TransitionLink
                 href={{
                   pathname: "/checkout",
                   query: {
                     ticketId: product,
-                    qty: cart,
+                    qty: cart.toString(),
                   },
                 }}
               >
                 Checkout
-              </Link>
+              </TransitionLink>
             </Button>
           </div>
         )}

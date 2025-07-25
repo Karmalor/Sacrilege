@@ -90,7 +90,7 @@ export const CollectionArchive: React.FC<Props> = (props) => {
                         <CardHeader>
                           {item.title && <CardTitle>Includes:</CardTitle>}
                           <CardDescription>{item.title}</CardDescription>
-                          <AddToCartButton product={item} />
+                          {/* <AddToCartButton product={item} /> */}
                         </CardHeader>
                         {/* <CardContent className="space-y-2"> */}
                         {/* <div className="space-y-1 flex gap-4 items-center">

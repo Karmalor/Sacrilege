@@ -1031,6 +1031,7 @@ export interface Ticket {
   paymentIntent?: string | null;
   checkoutSession?: string | null;
   paid?: boolean | null;
+  isCheckedIn?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1653,6 +1654,7 @@ export interface TicketsSelect<T extends boolean = true> {
   paymentIntent?: T;
   checkoutSession?: T;
   paid?: T;
+  isCheckedIn?: T;
   updatedAt?: T;
   createdAt?: T;
 }

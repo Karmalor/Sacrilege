@@ -5,8 +5,16 @@
 body {
   width: 100dvw;
   overflow-x: hidden;
-
   font-family: "" General Sans ", sans-serif;";
+
+  transition-property: opacity, filter;
+  transition-timing-function: ease-in-out;
+  transition-duration: 500ms;
+}
+
+.page-transition {
+  opacity: 0;
+  filter: blur(12px);
 }
 
 @layer base {

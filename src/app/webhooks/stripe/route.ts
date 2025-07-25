@@ -16,8 +16,6 @@ export const config = {
 export async function POST(request: Request) {
   const sig = request.headers.get("stripe-signature");
 
-  console.log("Hi");
-
   if (!sig) {
     console.log("No Signature");
     return NextResponse.json(

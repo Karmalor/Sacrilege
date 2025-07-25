@@ -54,8 +54,6 @@ export const FormBlock: React.FC<
     user,
   } = props;
 
-  console.log("submission", submission);
-
   const prefilledData = submission?.submissionData;
 
   let outputData = {};
@@ -66,8 +64,6 @@ export const FormBlock: React.FC<
       return acc;
     }, {});
   }
-
-  console.log("outputData", outputData);
 
   const formMethods = useForm({
     // defaultValues: buildInitialFormState(formFromProps.fields)
