@@ -18,7 +18,7 @@ export const columns: ColumnDef<Ticket>[] = [
       const isCheckedIn = row.getValue("isCheckedIn") as boolean;
       const ticketId = row.getValue("id") as string;
       const checkedInToast = () => toast("Guest has been checked in");
-      const checkedOutToast = () => toast("guest has been checked out");
+      const checkedOutToast = () => toast("Guest has been checked out");
 
       const updateGuest = async () => {
         const guestStatus = await UpdateIsCheckedIn(ticketId, isCheckedIn);

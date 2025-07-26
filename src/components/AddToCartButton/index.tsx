@@ -2,14 +2,10 @@
 
 import React, { useState } from "react";
 import { Button } from "../ui/button";
-import { redirect } from "next/navigation";
-import Link from "next/link";
 import TransitionLink from "../TransitionLink";
-import { DialogClose } from "../ui/dialog";
 
-const AddToCartButton = ({ product, onCheckout }) => {
+const AddToCartButton = ({ product }) => {
   const [cart, setCart] = useState(0);
-  const [openCheckout, setOpenCheckout] = useState(false);
 
   // let cart = 0
 
@@ -47,11 +43,6 @@ const AddToCartButton = ({ product, onCheckout }) => {
   const quantity = cart;
   // cart.items.find((item) => item.product.id === product.id)?.quantity || 0;
 
-  const handleCheckout = () => {
-    setOpenCheckout(true);
-    onCheckout();
-  };
-
   return (
     <div>
       {/* <Button onClick={addToCart}>Add to cart</Button> */}
@@ -77,10 +68,7 @@ const AddToCartButton = ({ product, onCheckout }) => {
               <h2>{quantity} in order</h2>
               <Button onClick={increaseItemQuantity}>+</Button>
             </div>
-            <Button
-              onClick={handleCheckout}
-              className="mx-auto w-full border-white"
-            >
+            <Button className="mx-auto w-full border-white">
               <TransitionLink
                 href={{
                   pathname: "/checkout",

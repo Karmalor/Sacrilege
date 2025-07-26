@@ -1,5 +1,3 @@
-"use client";
-
 import AddToCartButton from "@/components/AddToCartButton";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,7 +20,7 @@ import { TicketType } from "@/payload-types";
 import { cn } from "@/utilities/cn";
 import { formatCurrency } from "@/utilities/formatters";
 import { LucideArrowRight } from "lucide-react";
-import React, { useState } from "react";
+import React from "react";
 
 interface TicketSelectorButtonProps {
   ticketsOptions?:
@@ -37,20 +35,14 @@ const TicketSelectorButton = ({
   ticketsOptions,
   buttonLabel,
 }: TicketSelectorButtonProps) => {
-  const [openDialog, setOpenDialog] = useState(false);
-
-  const handleCloseDialog = () => {
-    setOpenDialog(false);
-  };
-
   return (
     <div>
       <div>
         <div className="flex justify-between items-center">
           {/* <div className="grid grid-cols-4 sm:grid-cols-8 lg:grid-cols-12 gap-y-4 gap-x-4 lg:gap-y-8 lg:gap-x-8 xl:gap-x-8"> */}
 
-          <Dialog open={openDialog}>
-            <DialogTrigger asChild onClick={() => setOpenDialog(true)}>
+          <Dialog>
+            <DialogTrigger asChild>
               <Button className="rounded-none bg-[#FE3D02] hover:scale-110">
                 {buttonLabel}
                 <br />
@@ -114,10 +106,7 @@ const TicketSelectorButton = ({
                               </CardDescription>
                             </div>
                             <div className="mt-8">
-                              <AddToCartButton
-                                product={item.value.id}
-                                onCheckout={handleCloseDialog}
-                              />
+                              <AddToCartButton product={item.value.id} />
                             </div>
                           </CardHeader>
                           {/* <CardContent className="space-y-2"> */}
