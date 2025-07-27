@@ -66,7 +66,7 @@ export const FeatureListConfig: Block = {
       },
       fields: [
         link({
-          required: false,
+          // required: false,
           overrides: {
             name: "ctaSecondary",
             label: "Secondary CTA (Optional)",
