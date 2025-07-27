@@ -167,7 +167,7 @@ export interface Page {
     } | null;
     links?:
       | {
-          link: {
+          link?: {
             type?: ('reference' | 'custom') | null;
             newTab?: boolean | null;
             reference?:
@@ -180,7 +180,7 @@ export interface Page {
                   value: string | Post;
                 } | null);
             url?: string | null;
-            label: string;
+            label?: string | null;
             /**
              * Choose how the link should be rendered.
              */
@@ -437,7 +437,7 @@ export interface CallToActionBlock {
   } | null;
   links?:
     | {
-        link: {
+        link?: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
           reference?:
@@ -450,7 +450,7 @@ export interface CallToActionBlock {
                 value: string | Post;
               } | null);
           url?: string | null;
-          label: string;
+          label?: string | null;
           /**
            * Choose how the link should be rendered.
            */
@@ -500,7 +500,7 @@ export interface ContentBlock {
                 value: string | Post;
               } | null);
           url?: string | null;
-          label: string;
+          label?: string | null;
           /**
            * Choose how the link should be rendered.
            */
@@ -821,7 +821,7 @@ export interface CustomBlock {
   } | null;
   links?:
     | {
-        link: {
+        link?: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
           reference?:
@@ -834,7 +834,7 @@ export interface CustomBlock {
                 value: string | Post;
               } | null);
           url?: string | null;
-          label: string;
+          label?: string | null;
           /**
            * Choose how the link should be rendered.
            */
@@ -979,7 +979,7 @@ export interface FeatureListType {
   title?: string | null;
   subtitle?: string | null;
   description?: string | null;
-  ctaPrimary: {
+  ctaPrimary?: {
     type?: ('reference' | 'custom') | null;
     newTab?: boolean | null;
     reference?:
@@ -992,13 +992,13 @@ export interface FeatureListType {
           value: string | Post;
         } | null);
     url?: string | null;
-    label: string;
+    label?: string | null;
     /**
      * Choose how the link should be rendered.
      */
     appearance?: ('default' | 'outline') | null;
   };
-  ctaSecondary: {
+  ctaSecondary?: {
     type?: ('reference' | 'custom') | null;
     newTab?: boolean | null;
     reference?:
@@ -1011,7 +1011,7 @@ export interface FeatureListType {
           value: string | Post;
         } | null);
     url?: string | null;
-    label: string;
+    label?: string | null;
     /**
      * Choose how the link should be rendered.
      */
@@ -1033,7 +1033,7 @@ export interface FeatureListType {
   textAlignment?: ('start' | 'center' | 'end') | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'featureListConfig';
+  blockType: 'featureList';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1332,7 +1332,7 @@ export interface PagesSelect<T extends boolean = true> {
         code?: T | CodeBlockSelect<T>;
         contentWithMedia?: T | ContentWithMediaSelect<T>;
         ticketSelector?: T | TicketSelectorSelect<T>;
-        featureListConfig?: T | FeatureListTypeSelect<T>;
+        featureList?: T | FeatureListTypeSelect<T>;
       };
   meta?:
     | T
@@ -2088,7 +2088,7 @@ export interface Header {
   id: string;
   navItems?:
     | {
-        link: {
+        link?: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
           reference?:
@@ -2101,7 +2101,7 @@ export interface Header {
                 value: string | Post;
               } | null);
           url?: string | null;
-          label: string;
+          label?: string | null;
         };
         id?: string | null;
       }[]
@@ -2117,7 +2117,7 @@ export interface Footer {
   id: string;
   navItems?:
     | {
-        link: {
+        link?: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
           reference?:
@@ -2130,7 +2130,7 @@ export interface Footer {
                 value: string | Post;
               } | null);
           url?: string | null;
-          label: string;
+          label?: string | null;
         };
         id?: string | null;
       }[]

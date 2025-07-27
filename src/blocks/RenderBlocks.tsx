@@ -11,7 +11,7 @@ import { CustomBlock } from "./CustomBlock/Component";
 import { BannerBlock } from "./Banner/Component";
 import { CodeBlock } from "./Code/Component";
 import { ContentWithMediaBlock } from "./ContentWithMedia/Component";
-import FeatureListComponent from "./FeatureList/Component";
+import { FeatureListComponent } from "./FeatureList/Component";
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -23,7 +23,7 @@ const blockComponents = {
   banner: BannerBlock,
   code: CodeBlock,
   contentWithMedia: ContentWithMediaBlock,
-  FeatureListComponent: FeatureListComponent,
+  featureList: FeatureListComponent,
 };
 
 export const RenderBlocks: React.FC<{
@@ -44,7 +44,7 @@ export const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
-                <div className="my-16" key={index}>
+                <div className="my-4" key={index}>
                   <Block {...block} disableInnerContainer />
                 </div>
               );

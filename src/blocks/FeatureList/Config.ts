@@ -4,7 +4,7 @@ import { link } from "@/fields/link";
 import type { Block } from "payload";
 
 export const FeatureListConfig: Block = {
-  slug: "featureListConfig",
+  slug: "featureList",
   interfaceName: "FeatureListType",
   fields: [
     {
@@ -41,6 +41,7 @@ export const FeatureListConfig: Block = {
       ],
     },
     {
+      required: false,
       type: "collapsible",
       label: "Primary CTA (Optional)",
       admin: {
@@ -57,6 +58,7 @@ export const FeatureListConfig: Block = {
       ],
     },
     {
+      required: false,
       type: "collapsible",
       label: "Secondary CTA (Optional)",
       admin: {
@@ -64,7 +66,7 @@ export const FeatureListConfig: Block = {
       },
       fields: [
         link({
-          // required: false,
+          required: false,
           overrides: {
             name: "ctaSecondary",
             label: "Secondary CTA (Optional)",

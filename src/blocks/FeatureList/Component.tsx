@@ -2,12 +2,10 @@ import React from "react";
 import { cn } from "@/utilities/cn";
 import { CMSLink } from "@/components/Link";
 import { Media } from "@/components/Media";
-import { FeatureListType } from "@/payload-types";
+import { FeatureListType as FeatureListProps } from "@/payload-types";
 // import Media from '@/src/components/Media';
 
-type Props = FeatureListType;
-
-const FeatureListComponent: React.FC<Props> = ({
+export const FeatureListComponent: React.FC<FeatureListProps> = ({
   eyebrow,
   title,
   subtitle,
@@ -71,10 +69,7 @@ const FeatureListComponent: React.FC<Props> = ({
         )}
       >
         {features?.map((feature, index) => (
-          <div
-            key={index}
-            className="flex flex-col overflow-hidden rounded-lg border-2 border-muted"
-          >
+          <div key={index} className="flex flex-col overflow-hidden rounded-lg">
             {feature.image && (
               <div className="relative w-full">
                 <Media
@@ -85,7 +80,7 @@ const FeatureListComponent: React.FC<Props> = ({
                 />
               </div>
             )}
-            <div className="flex flex-col gap-2 px-8 py-12">
+            <div className="flex flex-col gap-2 px-4 py-4">
               {feature.title && (
                 <h3 className="text-xl font-bold">{feature.title}</h3>
               )}
@@ -99,5 +94,3 @@ const FeatureListComponent: React.FC<Props> = ({
     </section>
   );
 };
-
-export default FeatureListComponent;
