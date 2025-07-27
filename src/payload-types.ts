@@ -202,6 +202,7 @@ export interface Page {
     | CodeBlock
     | ContentWithMedia
     | TicketSelector
+    | FeatureListType
   )[];
   meta?: {
     title?: string | null;
@@ -971,6 +972,71 @@ export interface TicketSelector {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureListType".
+ */
+export interface FeatureListType {
+  eyebrow?: string | null;
+  title?: string | null;
+  subtitle?: string | null;
+  description?: string | null;
+  ctaPrimary: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: string | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: string | Post;
+        } | null);
+    url?: string | null;
+    label: string;
+    /**
+     * Choose how the link should be rendered.
+     */
+    appearance?: ('default' | 'outline') | null;
+  };
+  ctaSecondary: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: string | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: string | Post;
+        } | null);
+    url?: string | null;
+    label: string;
+    /**
+     * Choose how the link should be rendered.
+     */
+    appearance?: ('default' | 'outline') | null;
+  };
+  features: {
+    image?: (string | null) | Media;
+    title?: string | null;
+    description?: string | null;
+    id?: string | null;
+  }[];
+  /**
+   * Select if text is on the top or the bottom.
+   */
+  textPlacement?: ('top' | 'bottom') | null;
+  /**
+   * Align text within its column (left, center, or right).
+   */
+  textAlignment?: ('start' | 'center' | 'end') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'featureListConfig';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "performanceVideos".
  */
 export interface PerformanceVideo {
@@ -1266,6 +1332,7 @@ export interface PagesSelect<T extends boolean = true> {
         code?: T | CodeBlockSelect<T>;
         contentWithMedia?: T | ContentWithMediaSelect<T>;
         ticketSelector?: T | TicketSelectorSelect<T>;
+        featureListConfig?: T | FeatureListTypeSelect<T>;
       };
   meta?:
     | T
@@ -1428,6 +1495,48 @@ export interface ContentWithMediaSelect<T extends boolean = true> {
  */
 export interface TicketSelectorSelect<T extends boolean = true> {
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureListType_select".
+ */
+export interface FeatureListTypeSelect<T extends boolean = true> {
+  eyebrow?: T;
+  title?: T;
+  subtitle?: T;
+  description?: T;
+  ctaPrimary?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        appearance?: T;
+      };
+  ctaSecondary?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        appearance?: T;
+      };
+  features?:
+    | T
+    | {
+        image?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  textPlacement?: T;
+  textAlignment?: T;
   id?: T;
   blockName?: T;
 }

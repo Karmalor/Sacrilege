@@ -27,7 +27,7 @@ const LoginForm = (): ReactElement => {
     setIsPending(false);
 
     if (result.success) {
-      router.push("/");
+      router.push("/TicketTable");
     } else {
       setError(result.error || "An error occurred");
     }

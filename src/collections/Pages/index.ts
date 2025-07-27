@@ -25,6 +25,7 @@ import { CustomBlock } from "@/blocks/CustomBlock/config";
 import { Banner } from "@/blocks/Banner/config";
 import { ContentWithMedia } from "@/blocks/ContentWithMedia/config";
 import { TicketSelector } from "@/blocks/TicketSelectorBlock/config";
+import { FeatureListConfig } from "@/blocks/FeatureList/Config";
 
 export const Pages: CollectionConfig<"pages"> = {
   slug: "pages",
@@ -91,6 +92,7 @@ export const Pages: CollectionConfig<"pages"> = {
                 Code,
                 ContentWithMedia,
                 TicketSelector,
+                FeatureListConfig,
               ],
               required: true,
               admin: {

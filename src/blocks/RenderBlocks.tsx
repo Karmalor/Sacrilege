@@ -1,4 +1,3 @@
-import { cn } from "src/utilities/cn";
 import React, { Fragment } from "react";
 
 import type { Page } from "@/payload-types";
@@ -12,7 +11,7 @@ import { CustomBlock } from "./CustomBlock/Component";
 import { BannerBlock } from "./Banner/Component";
 import { CodeBlock } from "./Code/Component";
 import { ContentWithMediaBlock } from "./ContentWithMedia/Component";
-import { TicketSelectorBlock } from "./TicketSelectorBlock/Component";
+import FeatureListComponent from "./FeatureList/Component";
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -24,6 +23,7 @@ const blockComponents = {
   banner: BannerBlock,
   code: CodeBlock,
   contentWithMedia: ContentWithMediaBlock,
+  FeatureListComponent: FeatureListComponent,
 };
 
 export const RenderBlocks: React.FC<{
