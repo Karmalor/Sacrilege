@@ -83,7 +83,7 @@ export const Tickets: CollectionConfig = {
       name: "isCheckedIn",
       label: "Is Checked In",
       type: "checkbox",
-      defaultValue: "false",
+      defaultValue: false,
     },
   ],
 };

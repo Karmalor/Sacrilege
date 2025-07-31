@@ -77,6 +77,7 @@ export async function POST(request: Request) {
               paymentIntent: session.object.payment_intent?.toString(),
               checkoutSession: session.object.id,
               paid: true,
+              isCheckedIn: false,
             },
           });
         } catch (error) {
