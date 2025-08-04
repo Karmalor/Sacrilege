@@ -68,7 +68,7 @@ const AddToCartButton = ({ product }) => {
               <h2>{quantity} in order</h2>
               <Button onClick={increaseItemQuantity}>+</Button>
             </div>
-            <Button className="mx-auto w-full border-white">
+            <Button asChild className="mx-auto w-full border-white">
               <TransitionLink
                 href={{
                   pathname: "/checkout",
