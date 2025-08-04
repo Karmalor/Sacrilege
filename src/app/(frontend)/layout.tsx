@@ -18,6 +18,7 @@ import { getServerSideURL } from "@/utilities/getURL";
 import { getUser } from "./(authenticated)/_actions/getUser";
 
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export default async function RootLayout({
   children,
@@ -49,7 +50,7 @@ export default async function RootLayout({
           <Header user={user} />
           {children}
           <Analytics />
-
+          <SpeedInsights />
           <Footer />
         </Providers>
       </body>
