@@ -58,7 +58,7 @@ const CheckoutPage = async ({
     },
   ];
 
-  const amount = ticket.price * quantity;
+  const amount = ticket.price * 100 * quantity;
 
   const appFee = Math.floor(amount * 0.05);
 
