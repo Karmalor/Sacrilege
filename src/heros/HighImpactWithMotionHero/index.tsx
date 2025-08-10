@@ -22,6 +22,8 @@ export const HighImpactWithMotionHero: React.FC<Page["hero"]> = ({
 }) => {
   const { setHeaderTheme } = useHeaderTheme();
 
+  console.log("media", media);
+
   useEffect(() => {
     setHeaderTheme("dark");
   });

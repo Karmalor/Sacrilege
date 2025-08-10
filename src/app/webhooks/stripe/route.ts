@@ -81,7 +81,7 @@ export async function POST(request: Request) {
             },
           });
         } catch (error) {
-          console.error("Error updating application", error);
+          console.error("Error adding ticket", error);
         }
       }
     });
