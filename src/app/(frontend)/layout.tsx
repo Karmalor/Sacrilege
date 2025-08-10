@@ -59,7 +59,7 @@ export default async function RootLayout({
               s.parentNode.insertBefore(t,s)}(window, document,
               'script',
               'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', 'YOUR_PIXEL_ID');
+              fbq('init', '1566899370609216');
               fbq('track', 'PageView');
             `,
           }}
