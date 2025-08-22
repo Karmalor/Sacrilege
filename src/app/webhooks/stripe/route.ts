@@ -9,7 +9,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
 
 export const config = {
   api: {
-    bodyParse: false,
+    bodyParser: false,
   },
 };
 
@@ -43,68 +43,92 @@ export async function POST(request: Request) {
 
   // switch (event.type) {
   if (event.type === "checkout.session.completed") {
-    console.log("Event Suceeded", event.type);
-    const session = event.data as Stripe.CheckoutSessionCompletedEvent.Data;
+    try {
+      const session = event.data.object as Stripe.Checkout.Session;
 
-    if (session.object.payment_status !== "paid") {
-      console.log("Session not paid");
-      // return;
-    }
+      if (session.payment_status !== "paid") {
+        return NextResponse.json(
+          { error: "Session not paid" },
+          { status: 400 }
+        );
+      }
 
-    const lineItems = await stripe.checkout.sessions.listLineItems(
-      session.object.id,
-      { expand: ["data.price.product"] }
-    );
+      const lineItems = await stripe.checkout.sessions.listLineItems(
+        session.id,
+        {
+          expand: ["data.price.product"],
+        }
+      );
 
-    if (!lineItems) {
-      console.log("No line items");
-      // return;
-    }
+      for (const lineItem of lineItems.data) {
+        const product = lineItem.price?.product as Stripe.Product;
+        const ticketType = product?.metadata?.ticketId;
 
-    console.log("lineItems", lineItems);
-
-    lineItems.data.map(async (lineItem) => {
-      for (let i = 0; i < (lineItem.quantity || 1); i++) {
-        try {
+        for (let i = 0; i < (lineItem.quantity ?? 1); i++) {
           await payload.create({
             collection: "tickets",
             data: {
-              user: session.object.customer_details?.email as string,
-              firstName: session.object.custom_fields[0].text?.value,
-              lastName: session.object.custom_fields[1].text?.value,
-              // @ts-ignore
-              ticketType: lineItem.price?.product.metadata.ticketId as string,
-              paymentIntent: session.object.payment_intent?.toString(),
-              checkoutSession: session.object.id,
+              user: session.customer_details?.email ?? "",
+              firstName: session.custom_fields?.[0]?.text?.value ?? "",
+              lastName: session.custom_fields?.[1]?.text?.value ?? "",
+              ticketType,
+              paymentIntent: session.payment_intent?.toString(),
+              checkoutSession: session.id,
               paid: true,
               isCheckedIn: false,
             },
           });
-        } catch (error) {
-          console.error("Error adding ticket", error);
         }
       }
-    });
+    } catch (err) {
+      console.error("Error handling checkout.session.completed:", err);
+      return NextResponse.json({ error: "Processing error" }, { status: 400 });
+    }
   }
+  // if (event.type === "checkout.session.completed") {
+  //   console.log("Event Suceeded", event.type);
+  //   const session = event.data as Stripe.CheckoutSessionCompletedEvent.Data;
 
-  // case "payment_intent.cancelled":
-  // case "payment_intent.failed": {
-  //   const paymentIntent = event.data.object as Stripe.PaymentIntent;
-  //   try {
-  //     await payload.delete({
-  //       collection: "applicants",
-  //       where: {
-  //         paymentIntent: {
-  //           equals: paymentIntent.id,
-  //         },
-  //       },
-  //     });
-  //   } catch (error) {
-  //     console.error("Error deleting application", error);
+  //   if (session.object.payment_status !== "paid") {
+  //     console.log("Session not paid");
+  //     // return;
   //   }
+
+  //   const lineItems = await stripe.checkout.sessions.listLineItems(
+  //     session.object.id,
+  //     { expand: ["data.price.product"] }
+  //   );
+
+  //   if (!lineItems) {
+  //     console.log("No line items");
+  //     // return;
+  //   }
+
+  //   console.log("lineItems", lineItems);
+
+  //   lineItems.data.map(async (lineItem) => {
+  //     for (let i = 0; i < (lineItem.quantity || 1); i++) {
+  //       try {
+  //         await payload.create({
+  //           collection: "tickets",
+  //           data: {
+  //             user: session.object.customer_details?.email as string,
+  //             firstName: session.object.custom_fields[0].text?.value,
+  //             lastName: session.object.custom_fields[1].text?.value,
+  //             // @ts-ignore
+  //             ticketType: lineItem.price?.product.metadata.ticketId as string,
+  //             paymentIntent: session.object.payment_intent?.toString(),
+  //             checkoutSession: session.object.id,
+  //             paid: true,
+  //             isCheckedIn: false,
+  //           },
+  //         });
+  //       } catch (error) {
+  //         console.error("Error adding ticket", error);
+  //       }
+  //     }
+  //   });
   // }
-  // default:
-  //   console.log(`Unhandled event type: ${event.type}`);
 
   return NextResponse.json({ recieve: true });
 }
