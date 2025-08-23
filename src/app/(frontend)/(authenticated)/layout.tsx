@@ -7,13 +7,13 @@ interface LayoutProps {
 }
 
 const Layout: FC<LayoutProps> = async ({ children }) => {
-  // const { user } = await getMeUser();
+  const { user } = await getMeUser();
 
-  // console.log(user);
+  console.log(user);
 
-  // if (!user) {
-  //   redirect("/login");
-  // }
+  if (!user) {
+    redirect("/admin");
+  }
 
   return <>{children}</>;
 };
