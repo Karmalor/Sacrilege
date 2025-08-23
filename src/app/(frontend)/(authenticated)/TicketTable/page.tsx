@@ -9,6 +9,7 @@ export default async function TicketTablePage() {
 
   const attendees = await payload.find({
     collection: "tickets",
+    limit: 100,
   });
 
   return (
