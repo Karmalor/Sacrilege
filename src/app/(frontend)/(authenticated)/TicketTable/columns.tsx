@@ -44,7 +44,9 @@ export const columns: ColumnDef<Ticket>[] = [
     },
   },
   {
-    accessorKey: "lastName",
+    accessorFn: (row) => row.lastName,
+    id: "lastName",
+    filterFn: "includesString",
     header: ({ column }) => {
       return (
         <Button
@@ -54,6 +56,13 @@ export const columns: ColumnDef<Ticket>[] = [
           Last Name
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
+      );
+    },
+    cell: ({ row }) => {
+      return (
+        <div>
+          <p>{row.getValue("lastName")}</p>
+        </div>
       );
     },
   },

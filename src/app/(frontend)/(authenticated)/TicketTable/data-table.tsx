@@ -8,6 +8,8 @@ import {
   getSortedRowModel,
   SortingState,
   useReactTable,
+  ColumnFiltersState,
+  getFilteredRowModel,
 } from "@tanstack/react-table";
 
 import {
@@ -19,9 +21,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/utilities/cn";
 import { fetchAttendees } from "./_actions/attendee.actions";
+import { Input } from "@/components/ui/input";
+import { LucideX } from "lucide-react";
+import { useDebouncedCallback } from "use-debounce";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -33,18 +37,29 @@ export function DataTable<TData, TValue>({
   data,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [tableData, setTableData] = useState<TData[]>(data);
+  const [globalFilter, setGlobalFilter] = useState<any>([]);
 
   const table = useReactTable({
-    data,
+    data: tableData,
     columns,
+
     getCoreRowModel: getCoreRowModel(),
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    onColumnFiltersChange: setColumnFilters,
+    getFilteredRowModel: getFilteredRowModel(),
+    globalFilterFn: "includesString", // built-in filter function
 
     state: {
       sorting,
+      columnFilters,
+      globalFilter,
     },
+
+    onGlobalFilterChange: setGlobalFilter,
 
     initialState: {
       // columnOrder: [
@@ -65,30 +80,61 @@ export function DataTable<TData, TValue>({
       //   },
       // ],
       pagination: {
-        pageSize: 25,
+        pageSize: 1000,
+        pageIndex: 0, // starting page
       },
     },
   });
 
-  async function loadPreviousPage() {
-    await fetchAttendees();
-    table.previousPage();
-  }
+  // async function loadPreviousPage() {
+  //   const newData = await fetchAttendees();
+  //   setTableData(newData);
+  //   table.previousPage();
+  // }
 
-  async function loadNextPage() {
-    await fetchAttendees();
-    table.nextPage();
-  }
+  // async function loadNextPage() {
+  //   const newData = await fetchAttendees();
+  //   setTableData(newData);
+  //   table.nextPage();
+  // }
+
+  const handleSearch = useDebouncedCallback((value: string) => {
+    table.setGlobalFilter(value || "");
+  }, 100);
 
   return (
     <div className="overflow-hidden rounded-md border">
       <div className="flex justify-between">
         <div>{/* <h1>Pages</h1> */}</div>
       </div>
-      <div className="flex-1 text-sm text-muted-foreground mx-10 items-start justify-center">
+
+      {/* <div className="flex-1 text-sm text-muted-foreground mx-10 items-start justify-center">
         {table.getFilteredSelectedRowModel().rows.length} of{" "}
         {table.getFilteredRowModel().rows.length} row(s) selected.
+      </div> */}
+      <div className="flex gap-2">
+        <Input
+          placeholder="Search guest..."
+          // value={globalFilter ?? ""}
+          // value=""
+          // onChange={(event) => {
+          //   table.getColumn("lastName")?.setFilterValue(event.target.value);
+          //   console.log("search changed", columnFilters);
+          // }}
+          onChange={(e) => handleSearch(e.target.value)}
+          className="max-w-sm border-gray-500"
+        />
+        <button
+          onClick={() => {
+            setGlobalFilter([]);
+          }}
+        >
+          <LucideX />
+        </button>
       </div>
+
+      {/* <GlobalDataSearch table={table} globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} /> */}
+
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -140,7 +186,7 @@ export function DataTable<TData, TValue>({
           )}
         </TableBody>
       </Table>
-      <div className="flex flex-col justify-center items-center">
+      {/* <div className="flex flex-col justify-center items-center mt-4">
         <h3 className="text-sm">
           page {table.getState().pagination.pageIndex + 1} of{" "}
           {table.getPageCount()}
@@ -165,7 +211,7 @@ export function DataTable<TData, TValue>({
             </Button>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

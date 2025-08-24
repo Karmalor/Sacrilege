@@ -12,18 +12,18 @@ function SideNav() {
       icon: LibraryBig,
       path: "/TicketTable",
     },
-    {
-      id: 2,
-      name: "Post Calendar",
-      icon: PartyPopper,
-      path: "/PostCalendar",
-    },
-    {
-      id: 3,
-      name: "Post Uploader",
-      icon: LineChart,
-      path: "/PostUploader",
-    },
+    // {
+    //   id: 2,
+    //   name: "Post Calendar",
+    //   icon: PartyPopper,
+    //   path: "/PostCalendar",
+    // },
+    // {
+    //   id: 3,
+    //   name: "Post Uploader",
+    //   icon: LineChart,
+    //   path: "/PostUploader",
+    // },
   ];
 
   const path = usePathname();
