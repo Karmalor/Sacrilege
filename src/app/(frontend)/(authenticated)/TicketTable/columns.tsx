@@ -86,7 +86,9 @@ export const columns: ColumnDef<Ticket>[] = [
     },
   },
   {
-    accessorKey: "ticketType.title",
+    // @ts-ignore
+    accessorFn: (row) => row.ticketType.title,
+    id: "tier",
     header: ({ column }) => {
       return (
         <Button

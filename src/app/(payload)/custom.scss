@@ -25,8 +25,19 @@ html {
   //   }
 }
 
+@font-face {
+  font-family: "kijs";
+  src: url("/fonts/BauhausKijsDisplay-SemiBold.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body,
 h1 {
+  // font-family: "kijs";
+  // font-size: 1em;
+  /* letter-spacing: -5px; */
+  // text-transform: uppercase;
 }
 h2 {
 }
@@ -66,7 +77,7 @@ h5 {
     .banner {
       // BEM modifier selector (.banner--type-success)
       &--type-success {
-        background: rgb(0, 213, 110);
+        // background: rgb(0, 213, 110);
         color: white;
       }
 
