@@ -27,8 +27,8 @@ export const generateMeta = async (args: {
   const ogImage = getImageURL(doc?.meta?.image);
 
   const title = doc?.meta?.title
-    ? doc?.meta?.title + " | Worship Burlesque"
-    : "Worship Burlesque";
+    ? doc?.meta?.title + " | Woulda.io"
+    : "Woulda.io";
 
   return {
     description: doc?.meta?.description,

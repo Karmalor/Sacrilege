@@ -20,7 +20,7 @@ export const homeStatic: Page = {
                 format: 0,
                 mode: "normal",
                 style: "",
-                text: "Worship Burlesque",
+                text: "Woulda.io",
                 version: 1,
               },
             ],
@@ -81,8 +81,8 @@ export const homeStatic: Page = {
     },
   },
   meta: {
-    description: "An open-source website built with Payload and Next.js.",
-    title: "Worship Burlesque",
+    description: "Live Events & Ticketing",
+    title: "Woulda.io",
   },
   title: "Home",
 };

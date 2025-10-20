@@ -3,7 +3,7 @@ import React from "react";
 import { CheckoutForm } from "./_components/CheckoutForm";
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
-import { TicketType } from "@/payload-types";
+import { Media, TicketType } from "@/payload-types";
 import { metadata } from "../layout";
 
 const CheckoutPage = async ({
@@ -15,22 +15,15 @@ const CheckoutPage = async ({
 
   const { qty, ticketId } = await searchParams;
 
-  let ticket: TicketType | null = null;
-
-  try {
-    ticket = await payload.findByID({
-      collection: "ticketTypes",
-      id: ticketId,
-    });
-
-    if (!ticket) {
-      notFound();
-    }
-
-    // continue rendering...
-  } catch (error) {
-    notFound(); // or show a custom error component
-  }
+  const ticket = await payload.find({
+    collection: "ticketTypes",
+    depth: 2,
+    where: {
+      isActive: {
+        equals: true,
+      },
+    },
+  });
 
   let quantity = 1;
 
@@ -39,14 +32,21 @@ const CheckoutPage = async ({
     quantity = parseInt(qtyParam);
   }
 
+  const ticketForPurchase: any = ticket.docs[0];
+
+  const ticketImage = `https://utfs.io/f/${ticketForPurchase.image?._key}`;
+
+  console.log("image", ticketImage);
+
   const productArray = [
     {
       price_data: {
         currency: "usd",
-        unit_amount: ticket.price * 100,
+        unit_amount: ticket.docs[0].price * 100,
         product_data: {
-          name: ticket.title,
-          metadata: { ticketId: ticket.id },
+          name: ticket.docs[0].title,
+          images: [ticketImage],
+          metadata: { ticketId: ticket.docs[0].id },
         },
       },
 
@@ -58,7 +58,7 @@ const CheckoutPage = async ({
     },
   ];
 
-  const amount = ticket.price * 100 * quantity;
+  const amount = ticket.docs[0].price * 100 * quantity;
 
   const appFee = Math.floor(amount * 0.05);
 

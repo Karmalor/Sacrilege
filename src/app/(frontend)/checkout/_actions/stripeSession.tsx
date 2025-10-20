@@ -27,7 +27,7 @@ export const postStripeSession = async ({
       line_items: productsArray,
 
       automatic_tax: {
-        enabled: false,
+        enabled: true,
       },
       mode: "payment",
       payment_intent_data: {

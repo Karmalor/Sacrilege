@@ -49,5 +49,11 @@ export const TicketTypes: CollectionConfig = {
       type: "number",
       required: true,
     },
+    {
+      name: "isActive",
+      label: "Is Active",
+      type: "checkbox",
+      defaultValue: false,
+    },
   ],
 };

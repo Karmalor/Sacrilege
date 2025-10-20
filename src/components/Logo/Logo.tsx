@@ -19,9 +19,9 @@ export const Logo = (props: Props) => {
 
   return (
     /* eslint-disable @next/next/no-img-element */
-    <h1>Worship Burlesque</h1>
+    <h1>Woulda.io</h1>
     // <img
-    //   alt="Worship Logo"
+    //   alt="Woulda.io"
     //   width={193}
     //   height={34}
     //   loading={loading}

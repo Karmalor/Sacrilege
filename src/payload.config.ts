@@ -35,8 +35,8 @@ const dirname = path.dirname(filename);
 export default buildConfig({
   admin: {
     meta: {
-      title: "Worship Burlesque",
-      description: "Admin page for Worship Burlesque",
+      title: "Woulda.io",
+      description: "Admin page for Woulda.io",
       icons: [
         {
           rel: "icon",

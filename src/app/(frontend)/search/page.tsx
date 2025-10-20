@@ -85,7 +85,7 @@ export default async function Page({
 
 export function generateMetadata(): Metadata {
   return {
-    title: `Worship Burlesque`,
+    title: `Woulda.io`,
     icons: [
       {
         rel: "icon",

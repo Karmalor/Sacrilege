@@ -926,6 +926,7 @@ export interface TicketType {
   showcase: string | Showcase;
   image?: (string | null) | Media;
   price: number;
+  isActive?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1793,6 +1794,7 @@ export interface TicketTypesSelect<T extends boolean = true> {
   showcase?: T;
   image?: T;
   price?: T;
+  isActive?: T;
   updatedAt?: T;
   createdAt?: T;
 }

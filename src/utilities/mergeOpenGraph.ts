@@ -9,8 +9,8 @@ const defaultOpenGraph: Metadata["openGraph"] = {
       url: `${getServerSideURL()}/favicon.ico`,
     },
   ],
-  siteName: "Worship Burlesque",
-  title: "Worship Burlesque",
+  siteName: "Woulda.io",
+  title: "Woulda.io",
 };
 
 export const mergeOpenGraph = (

@@ -23,7 +23,7 @@ import { Page, Post } from "@/payload-types";
 import { getServerSideURL } from "@/utilities/getURL";
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
-  return doc?.title ? `${doc.title} | Worship Burlesque` : "Worship Burlesque";
+  return doc?.title ? `${doc.title} | Woulda.io` : "Woulda.io";
 };
 
 const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
